@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>99906</title>
+    <title>——————————————————————————————</title>
     <link rel="icon" href="images/favicon.webp" type="image/webp">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
   </head>
   <body>
-    <audio id="myAudio" src="audio/z.mp3" preload="auto" loop></audio>
+    <canvas id="canv"></canvas>
+    <audio id="myAudio" src="audio/x.mp3" preload="auto" loop></audio>
     <div id="snowflakes"></div>
     <span class="tooltip" id="hint">Discord username copied to clipboard!</span>
     <div class="overlay" id="overlay">
@@ -18,6 +20,7 @@
       <h1 class="username" style="color: #fff;background:url(https://i.ibb.co/47v9bVs/U0hpDMb.gif);">out</h1>
       <div class="profile-picture">
         <img src="images/pfp.gif" alt="Profile Picture">
+        <div class="description"></div>
       </div>
       <div class="links">
         <div class="link">
@@ -53,27 +56,18 @@
           overlay.style.display = 'none';
           audio.play();
         }, 300);
+        var options = {
+        strings: ["77 Legacy", "u suck", "lil peep <3", "its a trap"],
+        typeSpeed: 35,
+        backSpeed: 35,
+        backDelay: 2000,
+        startDelay: 500,
+        loop: true,
+        showCursor: false 
+        };
+    
+        var typed = new Typed(".description", options);
       });
-      const snowflakeContainer = document.getElementById('snowflakes');
-
-      function createSnowflake() {
-        const snowflake = document.createElement('img')
-        snowflake.className = 'snowflake';
-        snowflake.src = 'images/cherry_leaf.png'
-        const randomX = Math.random() * document.body.clientWidth;
-        snowflake.style.left = randomX + 'px';
-        snowflake.style.top = '0px';
-        let randomSize = Math.random() * .2 + .2 + 'rem';
-        snowflake.style.width = randomSize
-        snowflake.style.height = randomSize
-        snowflake.style.animationDuration = Math.random() * 7 + 4 + 's';
-
-        snowflakeContainer.appendChild(snowflake);
-        setTimeout(() => {
-          snowflake.remove();
-        }, 11000);
-      }
-      setInterval(createSnowflake, 400);
       function copyDiscord() {
         const discordID = "99906";
         navigator.clipboard.writeText(discordID);
@@ -83,19 +77,47 @@
           hint.style.opacity = 0
         }, 2000);
       }
-      document.addEventListener('mousemove', (event) => {
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        const xPos = (event.clientX / windowWidth) * 100;
-        const yPos = (event.clientY / windowHeight) * 100;
-        const snowflakeContainer = document.getElementById('snowflakes');
-        snowflakeContainer.style.transform = `translate(-${xPos * 1}px, -${yPos * 1}px)`;
-      });
-      const glow = document.getElementById('glow');
-      document.addEventListener('mousemove', (e) => {
-        glow.style.left = `${e.pageX - glow.offsetWidth / 2}px`;
-        glow.style.top = `${e.pageY - glow.offsetHeight / 2}px`;
-      });
+
+      const canvas = document.getElementById('canv');
+const ctx = canvas.getContext('2d');
+const w = canvas.width = document.body.offsetWidth;
+const h = canvas.height = document.body.offsetHeight;
+const cols = Math.floor(w / 20) + 1;
+const ypos = Array(cols).fill(0);
+
+ctx.fillStyle = 'rgba(0,0,0,.5)';
+ctx.fillRect(0, 0, w, h);
+
+function matrix() {
+  ctx.fillStyle = 'rgba(0, 0, 0, .14)';
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.fillStyle = '#fff';
+  ctx.font = '12pt monospace';
+  
+  ypos.forEach((y, ind) => {
+    const randomOffset = Math.floor(Math.random() * 20902);
+    
+    const charCode = 0x4E00 + randomOffset;
+    const text = String.fromCharCode(charCode);
+    const x = ind * 20;
+    ctx.shadowColor = 'rgba(255, 255, 255, 1)';
+    ctx.shadowBlur = 32;
+    ctx.fillText(text,x,y)
+    ctx.shadowBlur = 0;
+
+    if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+    else ypos[ind] = y + 20;
+  });
+}
+
+
+setInterval(matrix, 50);
+
+addEventListener("DOMContentLoaded", (event) => {
+  var audio = document.getElementById("myAudio");
+  audio.volume = 0.2;
+})
     </script>
   </body>
 </html>

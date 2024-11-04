@@ -33,6 +33,11 @@ a {
 .container {
   text-align: center;
   color: #fff;
+  backdrop-filter: blur(8px);
+  padding: 5% 5%;
+  border-radius: 20% 20% 20% 20%;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
@@ -79,6 +84,32 @@ a {
   }
 }
 
+.matrix {
+  color: #fff;
+  position: absolute;
+  white-space: nowrap;
+  pointer-events: none; /* Prevent interaction */
+}
+
+.matrix_element {
+  padding: 0% 0% 0% 0%;
+  opacity: 0;
+}
+
+.fade-out {
+  animation: matrix_opacity 1s forwards; /* Trigger opacity animation */
+}
+
+#canv {
+  position: absolute;
+  opacity: .3;
+}
+
+@keyframes matrix_opacity {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 .profile-picture img {
   width: 120px;
   height: 120px;
@@ -123,13 +154,15 @@ a {
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: translateY(10px);
   z-index: 20;
+  pointer-events: none;
 }
 
 .link:hover .tooltip {
-  opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  opacity: 1;
+  pointer-events: none;
 }
+
 
 .overlay {
   position: fixed;
@@ -171,6 +204,18 @@ a {
   bottom: 5px;
   font-size: small;
   left: 5px;
+}
+
+.description {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 1.2em;
+  padding-bottom: 20%;
+  display: top;
+  align-items: center;
 }
 
 #hint {
