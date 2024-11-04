@@ -33,9 +33,11 @@ a {
 .container {
   text-align: center;
   color: #fff;
+  background-color: rgba(255,255,255,0.005);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 5% 5%;
-  border-radius: 20% 20% 20% 20%;
+  border-radius: 10vh;
   border: 1px solid rgba(255,255,255,0.05);
   box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
   z-index: 1;
