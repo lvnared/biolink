@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>99606</title>
+    <title>99906</title>
     <link rel="icon" href="images/favicon.webp" type="image/webp">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="glow" id="glow"></div>
     <audio id="myAudio" src="audio/z.mp3" preload="auto" loop></audio>
     <div id="snowflakes"></div>
     <span class="tooltip" id="hint">Discord username copied to clipboard!</span>
@@ -58,20 +57,23 @@
       const snowflakeContainer = document.getElementById('snowflakes');
 
       function createSnowflake() {
-        const snowflake = document.createElement('div');
+        const snowflake = document.createElement('img')
         snowflake.className = 'snowflake';
-        snowflake.innerHTML = '•';
+        snowflake.src = 'images/cherry_leaf.png'
         const randomX = Math.random() * document.body.clientWidth;
         snowflake.style.left = randomX + 'px';
         snowflake.style.top = '0px';
-        snowflake.style.fontSize = Math.random() * 1 + 0.5 + 'rem';
+        let randomSize = Math.random() * .2 + .2 + 'rem';
+        snowflake.style.width = randomSize
+        snowflake.style.height = randomSize
         snowflake.style.animationDuration = Math.random() * 7 + 4 + 's';
+
         snowflakeContainer.appendChild(snowflake);
         setTimeout(() => {
           snowflake.remove();
         }, 11000);
       }
-      setInterval(createSnowflake, 100);
+      setInterval(createSnowflake, 400);
       function copyDiscord() {
         const discordID = "99906";
         navigator.clipboard.writeText(discordID);

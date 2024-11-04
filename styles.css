@@ -46,14 +46,26 @@ a {
   overflow: hidden;
 }
 
+#snowflakes {
+  z-index: 10000;
+}
+
 .snowflake {
   position: absolute;
   color: #fff;
-  pointer-events: none;
-  opacity: 0.8;
+  opacity: 0;
   animation: fall linear forwards;
-  box-shadow: 0 0 64px rgba(255, 255, 255, 0.5);
-  z-index: 0;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fall {
