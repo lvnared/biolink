@@ -2,9 +2,9 @@
 
 @font-face {
   font-family: "WereBeast";
-  src: url("fonts/were_beast/werebeast.ttf") format("truetype"); /* Update the URL to your font's path */
-  font-weight: normal; /* Adjust as necessary */
-  font-style: normal; /* Adjust as necessary */
+  src: url("fonts/were_beast/werebeast.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
