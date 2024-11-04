@@ -1,123 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>996.sh</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div class="glow" id="glow"></div>
-  <audio id="myAudio" src="audio/z.mp3" preload="auto" loop></audio>
-  <div id="snowflakes"></div>
-  <span class="tooltip" id="hint">Discord username copied to clipboard!</span>
-
-  <!-- Overlay for click instruction -->
-  <div class="overlay" id="overlay">
-    <div class="overlay-content" id ="overlay_text">click anywhere</div>
-  </div>
-
-  <div class="container">
-    <h1 class="username" style="color: #fff;background:url(https://i.ibb.co/47v9bVs/U0hpDMb.gif);">out</h1>
-    <div class="profile-picture">
-      <img src="images/pfp.gif" alt="Profile Picture">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>996.sh</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="glow" id="glow"></div>
+    <audio id="myAudio" src="audio/z.mp3" preload="auto" loop></audio>
+    <div id="snowflakes"></div>
+    <span class="tooltip" id="hint">Discord username copied to clipboard!</span>
+    <div class="overlay" id="overlay">
+      <div class="overlay-content" id="overlay_text">click anywhere</div>
     </div>
-    <div class="links">
-      <div class="link">
-        <span class="tooltip">Copy Discord ID</span>
-        <a href="#" onclick="copyDiscord()" class="link-icon">
-          <img src="images/discord.svg" alt="Discord Icon">
-        </a>
+    <div class="container">
+      <h1 class="username" style="color: #fff;background:url(https://i.ibb.co/47v9bVs/U0hpDMb.gif);">out</h1>
+      <div class="profile-picture">
+        <img src="images/pfp.gif" alt="Profile Picture">
       </div>
-      <div class="link">
-        <span class="tooltip">Go to Roblox</span>
-        <a href="https://www.roblox.com/users/786131341/profile" target="_blank" class="link-icon">
-          <img src="images/roblox.svg" alt="Roblox Icon">
-        </a>
-      </div>
-      <div class="link">
-        <span class="tooltip">Go to TikTok</span>
-        <a href="https://www.tiktok.com/@MS4wLjABAAAArVsypuAJmNao-zPDPucVFctxtyunQ5TDXQgHWwUbhct2_yLLzQ0fkhZkNC-tp4RC" target="_blank" class="link-icon">
-          <img src="images/tiktok.svg" alt="TikTok Icon">
-        </a>
+      <div class="links">
+        <div class="link">
+          <span class="tooltip">Copy Discord ID</span>
+          <a href="#" onclick="copyDiscord()" class="link-icon">
+            <img src="images/discord.svg" alt="Discord Icon">
+          </a>
+        </div>
+        <div class="link">
+          <span class="tooltip">Go to Roblox</span>
+          <a href="https://www.roblox.com/users/786131341/profile" target="_blank" class="link-icon">
+            <img src="images/roblox.svg" alt="Roblox Icon">
+          </a>
+        </div>
+        <div class="link">
+          <span class="tooltip">Go to TikTok</span>
+          <a href="https://www.tiktok.com/@MS4wLjABAAAArVsypuAJmNao-zPDPucVFctxtyunQ5TDXQgHWwUbhct2_yLLzQ0fkhZkNC-tp4RC" target="_blank" class="link-icon">
+            <img src="images/tiktok.svg" alt="TikTok Icon">
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-
-  <h2 class="copyright">© 99906 - all rights reserved</h2>
-
-  <script>
-    const overlay = document.getElementById('overlay');
-    const audio = document.getElementById('myAudio');
-    const overlay_text = document.getElementById('overlay_text');
-    // Play audio on first click
-    overlay.addEventListener('click', function () {
-        overlay.style.backdropFilter = 'blur(0)'; // Remove the blur effect
-        overlay.style.opacity = '0'; // Remove the blur effect
+    <h2 class="copyright">© 99906 - all rights reserved</h2>
+    <script>
+      const overlay = document.getElementById('overlay');
+      const audio = document.getElementById('myAudio');
+      const overlay_text = document.getElementById('overlay_text');
+      overlay.addEventListener('click', function() {
+        overlay.style.backdropFilter = 'blur(0)';
+        overlay.style.opacity = '0';
         overlay_text.style.opacity = '0'
         setTimeout(() => {
-            overlay.style.display = 'none'; // Hide the overlay after blur transition
-            audio.play(); // Start playing the audio
-        }, 300); // Match this duration with the CSS transition duration
-    });
+          overlay.style.display = 'none';
+          audio.play();
+        }, 300);
+      });
+      const snowflakeContainer = document.getElementById('snowflakes');
 
-    // Snowflake function remains the same
-    const snowflakeContainer = document.getElementById('snowflakes');
-
-    function createSnowflake() {
+      function createSnowflake() {
         const snowflake = document.createElement('div');
         snowflake.className = 'snowflake';
-        snowflake.innerHTML = '•'; // Snowflake character
-
-        // Random horizontal position within the width of the username
+        snowflake.innerHTML = '•';
         const randomX = Math.random() * document.body.clientWidth;
-        snowflake.style.left = randomX + 'px'; // Position snowflakes at the x position
-
-        // Start snowflakes from above the username area
-        snowflake.style.top = '0px'; // Start at the top of the username
-        snowflake.style.fontSize = Math.random() * 1 + 0.5 + 'rem'; // Random size between 0.5rem and 1.5rem
-        snowflake.style.animationDuration = Math.random() * 7 + 4 + 's'; // Random fall duration
-
-        // Append the snowflake
+        snowflake.style.left = randomX + 'px';
+        snowflake.style.top = '0px';
+        snowflake.style.fontSize = Math.random() * 1 + 0.5 + 'rem';
+        snowflake.style.animationDuration = Math.random() * 7 + 4 + 's';
         snowflakeContainer.appendChild(snowflake);
-
-        // Remove the snowflake after it falls to prevent clutter
         setTimeout(() => {
-            snowflake.remove();
-        }, 11000); // Adjust time to match longest animation duration
-    }
-    setInterval(createSnowflake, 100); // Adjust frequency of snowflakes
-
-    function copyDiscord() {
-      const discordID = "99906";  // Replace with your actual Discord ID
-      navigator.clipboard.writeText(discordID);
-      var hint = document.getElementById('hint')
-      hint.style.opacity = 1
-      setTimeout(() => {
-        hint.style.opacity = 0
-        }, 2000); // Adjust time to match longest animation duration
-    }
-
-    document.addEventListener('mousemove', (event) => {
-    // Get the width and height of the viewport
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-
-    // Calculate how much to move the snowflakes based on mouse position
-    const xPos = (event.clientX / windowWidth) * 100; // percentage of the width
-    const yPos = (event.clientY / windowHeight) * 100; // percentage of the height
-
-    // Set a parallax effect by adjusting the transform properties of the snowflakes
-    const snowflakeContainer = document.getElementById('snowflakes');
-    snowflakeContainer.style.transform = `translate(-${xPos * 1}px, -${yPos * 1}px)`;
-});
-
-const glow = document.getElementById('glow');
-
-document.addEventListener('mousemove', (e) => {
-    glow.style.left = `${e.pageX - glow.offsetWidth / 2}px`;
-    glow.style.top = `${e.pageY - glow.offsetHeight / 2}px`;
-});
-  </script>
-</body>
+          snowflake.remove();
+        }, 11000);
+      }
+      setInterval(createSnowflake, 100);
+      function copyDiscord() {
+        const discordID = "99906";
+        navigator.clipboard.writeText(discordID);
+        var hint = document.getElementById('hint')
+        hint.style.opacity = 1
+        setTimeout(() => {
+          hint.style.opacity = 0
+        }, 2000);
+      }
+      document.addEventListener('mousemove', (event) => {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const xPos = (event.clientX / windowWidth) * 100;
+        const yPos = (event.clientY / windowHeight) * 100;
+        const snowflakeContainer = document.getElementById('snowflakes');
+        snowflakeContainer.style.transform = `translate(-${xPos * 1}px, -${yPos * 1}px)`;
+      });
+      const glow = document.getElementById('glow');
+      document.addEventListener('mousemove', (e) => {
+        glow.style.left = `${e.pageX - glow.offsetWidth / 2}px`;
+        glow.style.top = `${e.pageY - glow.offsetHeight / 2}px`;
+      });
+    </script>
+  </body>
 </html>

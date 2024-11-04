@@ -1,171 +1,169 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
 
 @font-face {
-    font-family: 'WereBeast';
-    src: url('fonts/were_beast/werebeast.ttf') format('truetype'); /* Update the URL to your font's path */
-    font-weight: normal; /* Adjust as necessary */
-    font-style: normal; /* Adjust as necessary */
+  font-family: "WereBeast";
+  src: url("fonts/were_beast/werebeast.ttf") format("truetype"); /* Update the URL to your font's path */
+  font-weight: normal; /* Adjust as necessary */
+  font-style: normal; /* Adjust as necessary */
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-  
+
 body {
-    cursor: url('images/cursors/cursors_arrow.png'), auto; /* Default cursor */
-    user-select: none;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #000;
-    overflow: hidden;
-    position: relative; /* Ensure body is relative for overlay */
+  cursor: url("images/cursors/cursors_arrow.png"), auto;
+  user-select: none;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+  position: relative;
 }
 
 a {
-    cursor: url('images/cursors/cursors_link.png'), pointer; /* Link cursor */
-}
-  
-.container {
-    text-align: center;
-    color: #fff;
-    z-index: 1; /* Ensure container is above overlay */
+  cursor: url("images/cursors/cursors_link.png"), pointer;
 }
 
-.username { 
-    font-family: 'WereBeast', sans-serif;
-    font-size: 2rem;
-    display: inline-block; /* Ensures the background only covers the text area */
-    margin-bottom: 20px;
-    color: #fff;
-    position: relative; /* Allows snowflakes to be positioned relative to this element */
-    overflow: hidden; /* Ensure snowflakes are clipped inside the text */
+.container {
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+}
+
+.username {
+  font-family: "WereBeast", sans-serif;
+  font-size: 2rem;
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
 }
 
 .snowflake {
-    position: absolute;
-    color: #fff; /* White snowflakes */
-    pointer-events: none; /* Prevent interaction */
-    opacity: 0.8; /* Slight transparency */
-    animation: fall linear forwards; /* Animation properties */
-    box-shadow: 0 0 64px rgba(255, 255, 255, 0.5); /* Optional: Add a shadow effect */
-    z-index: 0;
+  position: absolute;
+  color: #fff;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: fall linear forwards;
+  box-shadow: 0 0 64px rgba(255, 255, 255, 0.5);
+  z-index: 0;
 }
 
 @keyframes fall {
-    0% {
-        opacity: 0.8; /* Start slightly transparent */
-        transform: translateY(-10vh);
-    }
-    100% {
-        transform: translateY(100vh); /* Fall to the bottom of the text */
-        opacity: 0; /* Fade out */
-    }
+  0% {
+    opacity: 0.8;
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }
 
 .profile-picture img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    border: 3px solid #040404;
-    z-index: 1;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 3px solid #040404;
+  z-index: 1;
 }
-  
+
 .links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
-  
+
 .link {
-    position: relative;
+  position: relative;
 }
-  
+
 .link-icon img {
-    width: 50px;
-    height: 50px;
-    transition: transform 0.3s ease;
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
 }
-  
+
 .link-icon:hover img {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
-  
+
 .tooltip {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #000000;
-    border-radius: 16px;
-    border: 2px solid #040404; /* Adjusted border color */
-    color: #fff;
-    padding: 7px 15px;
-    opacity: 0;
-    font-size: 0.8rem;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: translateY(10px);
-    z-index: 20; /* Higher z-index to be above everything else */
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000000;
+  border-radius: 16px;
+  border: 2px solid #040404;
+  color: #fff;
+  padding: 7px 15px;
+  opacity: 0;
+  font-size: 0.8rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px);
+  z-index: 20;
 }
 
-  
 .link:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-/* Overlay styles */
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10; /* Ensure overlay is above everything else */
-    backdrop-filter: blur(8px); /* Initial blur effect */
-    transition: backdrop-filter 0.3s ease, opacity 0.3s ease; /* Transition effect for blurring */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  transition: backdrop-filter 0.3s ease, opacity 0.3s ease;
 }
 
 .overlay-content {
-    color: #fff;
-    font-size: 1.5rem;
-    font-family: 'WereBeast', sans-serif;
-    text-align: center;
-    transition: opacity 0.3s ease; /* Transition effect for blurring */
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: "WereBeast", sans-serif;
+  text-align: center;
+  transition: opacity 0.3s ease;
 }
 
 #snowflakes {
-    position: absolute; /* or relative */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Ensure mouse events can pass through to the overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .copyright {
-    font-family:'Courier New', Courier, monospace;
-    color: #fff;
-    position: absolute;
-    bottom: 5px;
-    font-size: small;
-    left: 5px;
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  position: absolute;
+  bottom: 5px;
+  font-size: small;
+  left: 5px;
 }
 
 #hint {
-    position: absolute;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 2%;
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2%;
 }
