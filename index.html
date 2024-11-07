@@ -16,108 +16,44 @@
     <div class="overlay" id="overlay">
       <div class="overlay-content" id="overlay_text">click anywhere</div>
     </div>
-    <div class="container">
-      <h1 class="username" style="color: #fff;background:url(https://i.ibb.co/47v9bVs/U0hpDMb.gif);">out</h1>
-      <div class="profile-picture">
-        <img src="images/pfp.gif" alt="Profile Picture">
-        <div class="description"></div>
+    <div class="containers">
+      <div class="container">
+        <h1 class="username" style="color: #fff;background:url(https://i.ibb.co/47v9bVs/U0hpDMb.gif);">out</h1>
+        <div class="profile-picture">
+          <img src="images/pfp.gif" alt="Profile Picture">
+          <div class="description"></div>
+        </div>
+        <div class="links">
+          <div class="link">
+            <span class="tooltip">Copy Discord ID</span>
+            <a href="#" onclick="copyDiscord()" class="link-icon">
+              <img src="images/discord.svg" alt="Discord Icon">
+            </a>
+          </div>
+          <div class="link">
+            <span class="tooltip">Go to Roblox</span>
+            <a href="https://www.roblox.com/users/786131341/profile" target="_blank" class="link-icon">
+              <img src="images/roblox.svg" alt="Roblox Icon">
+            </a>
+          </div>
+          <div class="link">
+            <span class="tooltip">Go to TikTok</span>
+            <a href="https://www.tiktok.com/@MS4wLjABAAAArVsypuAJmNao-zPDPucVFctxtyunQ5TDXQgHWwUbhct2_yLLzQ0fkhZkNC-tp4RC" target="_blank" class="link-icon">
+              <img src="images/tiktok.svg" alt="TikTok Icon">
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="links">
-        <div class="link">
-          <span class="tooltip">Copy Discord ID</span>
-          <a href="#" onclick="copyDiscord()" class="link-icon">
-            <img src="images/discord.svg" alt="Discord Icon">
-          </a>
-        </div>
-        <div class="link">
-          <span class="tooltip">Go to Roblox</span>
-          <a href="https://www.roblox.com/users/786131341/profile" target="_blank" class="link-icon">
-            <img src="images/roblox.svg" alt="Roblox Icon">
-          </a>
-        </div>
-        <div class="link">
-          <span class="tooltip">Go to TikTok</span>
-          <a href="https://www.tiktok.com/@MS4wLjABAAAArVsypuAJmNao-zPDPucVFctxtyunQ5TDXQgHWwUbhct2_yLLzQ0fkhZkNC-tp4RC" target="_blank" class="link-icon">
-            <img src="images/tiktok.svg" alt="TikTok Icon">
-          </a>
-        </div>
+      <div class="container-2">
+        <img src="images/bitcoin.svg" style="width: 12.5%; aspect-ratio: 1 / 1; padding-left: 2.5%;"></img>
+        <text class="display-price" id="text-bitcoin">$71,302</text>
+      </div>
+      <div class="container-2">
+        <img src="images/ethereum.svg" style="width: 12.5%; aspect-ratio: 1 / 1; padding-left: 2.5%;"></img>
+        <text class="display-price" id="text-ethereum">$71,302</text>
       </div>
     </div>
     <h2 class="copyright">© 99906 - all rights reserved</h2>
-    <script>
-      const overlay = document.getElementById('overlay');
-      const audio = document.getElementById('myAudio');
-      const overlay_text = document.getElementById('overlay_text');
-      overlay.addEventListener('click', function() {
-        overlay.style.backdropFilter = 'blur(0)';
-        overlay.style.opacity = '0';
-        overlay_text.style.opacity = '0'
-        setTimeout(() => {
-          overlay.style.display = 'none';
-          audio.play();
-        }, 300);
-        var options = {
-        strings: ["77 Legacy", "u suck", "lil peep <3", "its a trap"],
-        typeSpeed: 35,
-        backSpeed: 35,
-        backDelay: 2000,
-        startDelay: 500,
-        loop: true,
-        showCursor: false 
-        };
-    
-        var typed = new Typed(".description", options);
-      });
-      function copyDiscord() {
-        const discordID = "99906";
-        navigator.clipboard.writeText(discordID);
-        var hint = document.getElementById('hint')
-        hint.style.opacity = 1
-        setTimeout(() => {
-          hint.style.opacity = 0
-        }, 2000);
-      }
-
-      const canvas = document.getElementById('canv');
-const ctx = canvas.getContext('2d');
-const w = canvas.width = document.body.offsetWidth;
-const h = canvas.height = document.body.offsetHeight;
-const cols = Math.floor(w / 20) + 1;
-const ypos = Array(cols).fill(0);
-
-ctx.fillStyle = 'rgba(0,0,0,.5)';
-ctx.fillRect(0, 0, w, h);
-
-function matrix() {
-  ctx.fillStyle = 'rgba(0, 0, 0, .14)';
-  ctx.fillRect(0, 0, w, h);
-
-  ctx.fillStyle = '#fff';
-  ctx.font = '12pt monospace';
-  
-  ypos.forEach((y, ind) => {
-    const randomOffset = Math.floor(Math.random() * 20902);
-    
-    const charCode = 0x4E00 + randomOffset;
-    const text = String.fromCharCode(charCode);
-    const x = ind * 20;
-    ctx.shadowColor = 'rgba(255, 255, 255, 1)';
-    ctx.shadowBlur = 32;
-    ctx.fillText(text,x,y)
-    ctx.shadowBlur = 0;
-
-    if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-    else ypos[ind] = y + 20;
-  });
-}
-
-
-setInterval(matrix, 50);
-
-addEventListener("DOMContentLoaded", (event) => {
-  var audio = document.getElementById("myAudio");
-  audio.volume = 0.2;
-})
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
