@@ -14,7 +14,7 @@ const overlay = document.getElementById('overlay');
               audio.play();
             }, 300);
             var options = {
-              strings: ["77 Legacy", "u suck", "lil peep <3", "its a trap"],
+              strings: ["@iehl", "u suck", "i love lil peep", "hi nistna"],
                 typeSpeed: 35,
                 backSpeed: 35,
                 backDelay: 2000,
@@ -26,7 +26,7 @@ const overlay = document.getElementById('overlay');
             });
 
           function copyDiscord() {
-            const discordID = "99906";
+            const discordID = "iehl";
             navigator.clipboard.writeText(discordID);
             var hint = document.getElementById('hint')
             hint.style.opacity = 1
@@ -34,33 +34,8 @@ const overlay = document.getElementById('overlay');
               hint.style.opacity = 0
             }, 2000);
           }
-          const canvas = document.getElementById('canv');
-          const ctx = canvas.getContext('2d');
-          const w = canvas.width = document.body.offsetWidth;
-          const h = canvas.height = document.body.offsetHeight;
-          const cols = Math.floor(w / 20) + 1;
-          const ypos = Array(cols).fill(0); ctx.fillStyle = 'rgba(0,0,0,.5)'; ctx.fillRect(0, 0, w, h);
 
-          function matrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, .14)';
-            ctx.fillRect(0, 0, w, h);
-            ctx.fillStyle = '#fff';
-            ctx.font = '12pt monospace';
-            ypos.forEach((y, ind) => {
-              const randomOffset = Math.floor(Math.random() * 20902);
-              const charCode = 0x4E00 + randomOffset;
-              const text = String.fromCharCode(charCode);
-              const x = ind * 20;
-              ctx.shadowColor = 'rgba(255, 255, 255, 1)';
-              ctx.shadowBlur = 32;
-              ctx.fillText(text, x, y)
-              ctx.shadowBlur = 0;
-              if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-              else ypos[ind] = y + 20;
-            });
-          }
-          setInterval(matrix, 50); 
-
+          /*
 async function getCryptoPrices() {
   try {
     const response = await fetch(
@@ -90,3 +65,116 @@ addEventListener("DOMContentLoaded", (event) => {
   })
   
 })
+  */
+
+document.addEventListener('mousemove', function(e) {
+  const tooltip = document.querySelector('.tooltip-1');
+  
+  // Update position to follow cursor
+  tooltip.style.left = e.clientX + 'px';
+  tooltip.style.top = e.clientY + 20 + 'px'; // Offset slightly below cursor
+  
+  // Remove the transform that was centering it
+  tooltip.style.transform = 'none';
+});
+
+// To show/hide the tooltip when needed
+function showTooltip() {
+  const tooltip = document.querySelector('.tooltip');
+  tooltip.style.opacity = '1';
+}
+
+function hideTooltip() {
+  const tooltip = document.querySelector('.tooltip');
+  tooltip.style.opacity = '0';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const audio = document.getElementById('myAudio');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const timelineContainer = document.getElementById('timelineContainer');
+  const timelineProgress = document.getElementById('timelineProgress');
+  const timeDisplay = document.getElementById('timeDisplay');
+  
+  let isDragging = false;
+  
+  // Format time in MM:SS
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  }
+  
+  // Update timeline and time display
+  function updateTimeline() {
+    if (audio.duration) {
+      const progressPercentage = (audio.currentTime / audio.duration) * 100;
+      timelineProgress.style.width = `${progressPercentage}%`;
+      timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+    }
+  }
+  
+  // Handle position change based on mouse position
+  function handlePositionChange(e) {
+    const rect = timelineContainer.getBoundingClientRect();
+    let clickPosition = (e.clientX - rect.left) / rect.width;
+    
+    // Clamp the value between 0 and 1
+    clickPosition = Math.max(0, Math.min(1, clickPosition));
+    
+    audio.currentTime = clickPosition * audio.duration;
+    updateTimeline();
+  }
+  
+  // Handle play/pause
+  playPauseBtn.addEventListener('click', function() {
+    if (audio.paused) {
+      audio.play();
+      playPauseBtn.textContent = '⏸';
+    } else {
+      audio.pause();
+      playPauseBtn.textContent = '⏵';
+    }
+  });
+  
+  // Handle timeline click
+  timelineContainer.addEventListener('click', function(e) {
+    handlePositionChange(e);
+  });
+  
+  // Handle mouse down on timeline
+  timelineContainer.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    handlePositionChange(e);
+    
+    // Prevent text selection during dragging
+    e.preventDefault();
+  });
+  
+  // Handle mouse movement while dragging
+  document.addEventListener('mousemove', function(e) {
+    if (isDragging) {
+      handlePositionChange(e);
+    }
+  });
+  
+  // Handle mouse up (end dragging)
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
+  
+  // Update timeline during playback
+  audio.addEventListener('timeupdate', updateTimeline);
+  
+  // Set initial state when metadata is loaded
+  audio.addEventListener('loadedmetadata', function() {
+    timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+  });
+  
+  // Handle audio end
+  audio.addEventListener('ended', function() {
+    playPauseBtn.textContent = '⏵';
+    audio.currentTime = 0;
+    updateTimeline();
+  });
+});
