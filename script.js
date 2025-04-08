@@ -25,15 +25,21 @@ const overlay = document.getElementById('overlay');
               var typed = new Typed(".description", options);
             });
 
-          function copyDiscord() {
-            const discordID = "iehl";
-            navigator.clipboard.writeText(discordID);
-            var hint = document.getElementById('hint')
-            hint.style.opacity = 1
-            setTimeout(() => {
-              hint.style.opacity = 0
-            }, 2000);
-          }
+          document.getElementById('copy-discord').addEventListener('click', function (e) {
+            e.preventDefault();
+        
+            const discordTag = "iehl";
+        
+            navigator.clipboard.writeText(discordTag).then(() => {
+              var hint = document.getElementById('hint')
+              hint.style.opacity = 1
+              setTimeout(() => {
+                hint.style.opacity = 0
+              }, 2000);
+            }).catch(err => {
+              console.error('Failed to copy: ', err);
+            });
+          });
 
           /*
 async function getCryptoPrices() {
