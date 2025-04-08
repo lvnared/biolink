@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
   playPauseBtn.addEventListener('click', function() {
     if (audio.paused) {
       audio.play();
-      playPauseBtn.textContent = '⏸';
+      playPauseBtn.textContent = '\u23F8';
     } else {
       audio.pause();
       playPauseBtn.textContent = '⏵';
